@@ -1,6 +1,7 @@
 package com.ferdisonmezay.tutorials.genericrestapi.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,7 +26,18 @@ public class BaseModel implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}  
-	
-	
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		BaseModel baseModel = (BaseModel) o;
+		return id == baseModel.id;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }
